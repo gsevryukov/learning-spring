@@ -35,9 +35,9 @@ public class QuestionReaderImpl implements QuestionReader {
                 questions.add(new Question(text, ans));
             }
         } catch (IOException ex) {
-            System.out.println("Error while reading a file: " + fileName + ". " + ex);
+            System.out.println("Error while reading a file: " + fileName + " " + ex);
         } catch (Exception ex) {
-            System.out.println("Unknown error while reading a file: " + fileName + ". " + ex);
+            System.out.println("Unknown error while reading a file: " + fileName + " " + ex);
         }
 
         return questions;
