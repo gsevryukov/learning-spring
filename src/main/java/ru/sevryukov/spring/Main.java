@@ -8,7 +8,7 @@ public class Main {
 
         var ctx = new ClassPathXmlApplicationContext("/spring-context.xml");
         var service = ctx.getBean(QuestionReaderImpl.class);
-        var q = service.readQuestionsFromFile();
-        q.forEach(System.out::println);
+        var questionList = service.readQuestionsFromFile();
+        questionList.forEach(System.out::println);
     }
 }
