@@ -1,4 +1,4 @@
-package ru.sevryukov.spring.service.read;
+package ru.sevryukov.spring.service.input;
 
 import ru.sevryukov.spring.model.Question;
 

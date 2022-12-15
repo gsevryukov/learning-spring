@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.sevryukov.spring.service.read.impl.QuestionReaderImpl;
+import ru.sevryukov.spring.service.input.impl.QuestionReaderImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

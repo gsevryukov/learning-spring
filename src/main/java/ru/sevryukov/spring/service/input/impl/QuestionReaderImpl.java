@@ -1,9 +1,9 @@
-package ru.sevryukov.spring.service.read.impl;
+package ru.sevryukov.spring.service.input.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import ru.sevryukov.spring.model.Question;
-import ru.sevryukov.spring.service.read.QuestionReader;
+import ru.sevryukov.spring.service.input.QuestionReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;

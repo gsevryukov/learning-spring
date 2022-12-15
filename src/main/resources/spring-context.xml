@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="questionReader" class="ru.sevryukov.spring.service.read.impl.QuestionReaderImpl">
+    <bean id="questionReader" class="ru.sevryukov.spring.service.input.impl.QuestionReaderImpl">
         <constructor-arg name="fileName" value="questions.csv"/>
     </bean>
 </beans>
