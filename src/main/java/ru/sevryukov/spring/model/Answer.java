@@ -1,15 +1,13 @@
 package ru.sevryukov.spring.model;
 
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class User {
+public class Answer {
 
-    private final String firstName;
+    private final int questionId;
 
-    private final String lastName;
-
+    private final String correctAnswers;
 }

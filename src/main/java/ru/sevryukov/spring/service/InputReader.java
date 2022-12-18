@@ -1,4 +1,4 @@
-package ru.sevryukov.spring.service.input;
+package ru.sevryukov.spring.service;
 
 public interface InputReader {
 

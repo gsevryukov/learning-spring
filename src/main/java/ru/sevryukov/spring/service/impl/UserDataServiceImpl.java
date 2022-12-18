@@ -1,10 +1,10 @@
-package ru.sevryukov.spring.service.read.impl;
+package ru.sevryukov.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.User;
-import ru.sevryukov.spring.service.input.InputReader;
-import ru.sevryukov.spring.service.read.UserDataService;
+import ru.sevryukov.spring.service.InputReader;
+import ru.sevryukov.spring.service.UserDataService;
 
 @Service
 @RequiredArgsConstructor
@@ -19,12 +19,6 @@ public class UserDataServiceImpl implements UserDataService {
         System.out.println("Enter user last name...");
         var lastName = inputReader.readInput();
         return new User(firstName, lastName);
-    }
-
-    @Override
-    public void askUser() {
-        var user = getUserFromInput();
-        System.out.println("user is: " + user);
     }
 
 }

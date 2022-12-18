@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.sevryukov.spring.service.input.impl.QuestionReaderImpl;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.sevryukov.spring.StudentTestApplication;
+import ru.sevryukov.spring.service.impl.QuestionReaderImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -9,7 +10,7 @@ class ContextTest {
 
     @Test
     void contextLoadTest() {
-        var ctx = new ClassPathXmlApplicationContext("/spring-context.xml");
+        var ctx = new AnnotationConfigApplicationContext(StudentTestApplication.class);
         var questionReader = ctx.getBean(QuestionReaderImpl.class);
         assertNotNull(questionReader);
         var questionList = questionReader.readQuestionsFromFile();
