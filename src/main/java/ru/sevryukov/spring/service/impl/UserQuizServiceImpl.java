@@ -3,9 +3,8 @@ package ru.sevryukov.spring.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Answer;
-import ru.sevryukov.spring.model.Question;
-import ru.sevryukov.spring.service.InputReader;
 import ru.sevryukov.spring.service.QuestionReader;
+import ru.sevryukov.spring.service.UserAskService;
 import ru.sevryukov.spring.service.UserDataService;
 import ru.sevryukov.spring.service.UserQuizService;
 import ru.sevryukov.spring.service.ValidationService;
@@ -22,7 +21,7 @@ public class UserQuizServiceImpl implements UserQuizService {
 
     private final QuestionReader questionReader;
 
-    private final InputReader inputReader;
+    private final UserAskService userAskService;
 
 
     @Override
@@ -32,7 +31,7 @@ public class UserQuizServiceImpl implements UserQuizService {
         var questions = questionReader.readQuestionsFromFile();
         var userAnswers = new HashMap<Integer, Answer>();
         for (var q : questions) {
-            var answer = askQuestion(q);
+            var answer = userAskService.askUser(q.toString());
             if (!answer.isEmpty()) {
                 userAnswers.put(q.getId(), new Answer(q.getId(), answer));
             }
@@ -40,12 +39,4 @@ public class UserQuizServiceImpl implements UserQuizService {
         System.out.println(validationService.validateAnswers(userAnswers));
     }
 
-    private String askQuestion(Question q) {
-        System.out.println(q);
-        var answer = inputReader.readInput();
-        if (!answer.isEmpty()) {
-            return answer;
-        }
-        return askQuestion(q);
-    }
 }

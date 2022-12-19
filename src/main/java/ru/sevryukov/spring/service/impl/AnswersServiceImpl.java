@@ -1,6 +1,7 @@
 package ru.sevryukov.spring.service.impl;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Answer;
 import ru.sevryukov.spring.service.AnswersService;
@@ -12,19 +13,19 @@ import java.util.List;
 @Service
 public class AnswersServiceImpl implements AnswersService {
 
-    private final String fileName;
+    private final Resource file;
     private final FileStringReader fileStringReader;
 
-    public AnswersServiceImpl(@Value("${answers.file.name}") String fileName,
+    public AnswersServiceImpl(@Value("${answers.file.name}") Resource file,
                               FileStringReader fileStringReader) {
-        this.fileName = fileName;
+        this.file = file;
         this.fileStringReader = fileStringReader;
     }
 
     @Override
     public List<Answer> getCorrectAnswers() {
         var result = new ArrayList<Answer>();
-        var lines = fileStringReader.getStrings(fileName);
+        var lines = fileStringReader.getStrings(file.getFilename());
         for (var l : lines) {
             var values = l.split(",");
             if (values.length < 2) {

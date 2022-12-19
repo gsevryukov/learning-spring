@@ -3,21 +3,21 @@ package ru.sevryukov.spring.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.User;
-import ru.sevryukov.spring.service.InputReader;
+import ru.sevryukov.spring.service.UserAskService;
 import ru.sevryukov.spring.service.UserDataService;
 
 @Service
 @RequiredArgsConstructor
 public class UserDataServiceImpl implements UserDataService {
 
-    private final InputReader inputReader;
+    private final UserAskService userAskService;
+
+    private static final String ENTER_USER_PATTERN = "Enter user %s...";
 
     @Override
     public User getUserFromInput() {
-        System.out.println("Enter user first name...");
-        var firstName = inputReader.readInput();
-        System.out.println("Enter user last name...");
-        var lastName = inputReader.readInput();
+        var firstName = userAskService.askUser(String.format(ENTER_USER_PATTERN, "first name"));
+        var lastName = userAskService.askUser(String.format(ENTER_USER_PATTERN, "last name"));
         return new User(firstName, lastName);
     }
 

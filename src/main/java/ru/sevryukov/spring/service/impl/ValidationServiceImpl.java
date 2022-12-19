@@ -37,7 +37,7 @@ public class ValidationServiceImpl implements ValidationService {
                 }
             }
         }
-        var end = correctCounter >= passThreshold ? "Test passed!" : "Test failed!";
+        var end = correctCounter >= passThreshold ? "Test passed. Nice job!" : "Test failed. Try again!";
         return sb.append("\n").append(end).toString();
     }
 }

@@ -1,6 +1,7 @@
 package ru.sevryukov.spring.service.impl;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Question;
 import ru.sevryukov.spring.service.FileStringReader;
@@ -14,20 +15,19 @@ import java.util.List;
 @Service
 public class QuestionReaderImpl implements QuestionReader {
 
-    private final String fileName;
-
+    private final Resource file;
     private final FileStringReader fileReader;
 
-    public QuestionReaderImpl(@Value("${questions.file.name}") String fileName,
+    public QuestionReaderImpl(@Value("${questions.file.name}") Resource file,
                               FileStringReader fileReader) {
-        this.fileName = fileName;
+        this.file = file;
         this.fileReader = fileReader;
     }
 
     @Override
     public List<Question> readQuestionsFromFile() {
 
-        var lines = fileReader.getStrings(fileName);
+        var lines = fileReader.getStrings(file.getFilename());
         var questions = new ArrayList<Question>();
 
         for (int i = 0; i < lines.size(); i++) {
