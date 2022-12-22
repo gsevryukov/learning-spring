@@ -6,6 +6,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Question;
 import ru.sevryukov.spring.service.FileStringReader;
+import ru.sevryukov.spring.service.LocalizedMessageService;
 import ru.sevryukov.spring.service.QuestionReader;
 
 import java.util.ArrayList;
@@ -18,11 +19,14 @@ public class QuestionReaderImpl implements QuestionReader {
 
     private final Resource file;
     private final FileStringReader fileReader;
+    private final LocalizedMessageService messageService;
 
     public QuestionReaderImpl(@Value("${questions.fileName}") Resource file,
-                              FileStringReader fileReader) {
+                              FileStringReader fileReader,
+                              LocalizedMessageService messageService) {
         this.file = file;
         this.fileReader = fileReader;
+        this.messageService = messageService;
     }
 
     @Override
@@ -35,7 +39,9 @@ public class QuestionReaderImpl implements QuestionReader {
             var line = lines.get(i);
             String[] values = line.split(",");
             if (values.length < 1) {
-                throw new RuntimeException("Wrong questions file structure!");
+                var errMsg = messageService.getLocalizedMessage("exceptions.wrongFileStructure",
+                        new String[]{"questions"});
+                throw new RuntimeException(errMsg);
             }
             var text = values[0];
             var ans = new HashSet<>(Arrays.asList(values).subList(1, values.length));

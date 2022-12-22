@@ -1,3 +1,8 @@
+spring:
+  messages:
+    basename: "i18n/appmessages"
+    encoding: "UTF-8"
+
 questions:
   fileName: questions.csv
 
@@ -7,4 +12,5 @@ answers:
 studentTest:
   passThreshold: 4
 
-locale: en_En
+localisation:
+    locale: ru_Ru

@@ -4,6 +4,7 @@ package ru.sevryukov.spring.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Answer;
+import ru.sevryukov.spring.service.LocalizedMessageService;
 import ru.sevryukov.spring.service.QuestionReader;
 import ru.sevryukov.spring.service.UserAskService;
 import ru.sevryukov.spring.service.UserDataService;
@@ -24,11 +25,15 @@ public class UserQuizServiceImpl implements UserQuizService {
 
     private final UserAskService userAskService;
 
+    private final LocalizedMessageService messageService;
+
 
     @Override
     public void quizUser() {
         var user = userDataService.getUserFromInput();
-        System.out.println("Hello, " + user.getFirstName() + " " + user.getLastName() + "!");
+        var msg = messageService.getLocalizedMessage("messages.hello",
+                new String[]{user.getFirstName(), user.getLastName()});
+        System.out.println(msg);
         var questions = questionReader.readQuestionsFromFile();
         var userAnswers = new HashMap<Integer, Answer>();
         for (var q : questions) {
