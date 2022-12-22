@@ -1,5 +1,6 @@
 package ru.sevryukov.spring.service.impl;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class AnswersServiceImpl implements AnswersService {
     private final Resource file;
     private final FileStringReader fileStringReader;
 
-    public AnswersServiceImpl(@Value("${answers.file.name}") Resource file,
+    public AnswersServiceImpl(@Value("${answers.fileName}") Resource file,
                               FileStringReader fileStringReader) {
         this.file = file;
         this.fileStringReader = fileStringReader;

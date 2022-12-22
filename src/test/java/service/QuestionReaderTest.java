@@ -1,27 +1,27 @@
 package service;
 
-import config.TestConfig;
+
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import ru.sevryukov.spring.service.FileStringReader;
 import ru.sevryukov.spring.service.QuestionReader;
+import ru.sevryukov.spring.service.impl.FileStringReaderImpl;
+import ru.sevryukov.spring.service.impl.QuestionReaderImpl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringJUnitConfig
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class,
-        loader = AnnotationConfigContextLoader.class
-)
+@SpringBootTest
+@ContextConfiguration(classes = {QuestionReaderImpl.class, FileStringReaderImpl.class})
 class QuestionReaderTest {
 
     @Autowired
     private QuestionReader questionReader;
+
+    @Autowired
+    private FileStringReader fileStringReader;
 
     @Test
     void testQuestionReader() {

@@ -1,39 +1,42 @@
 package service;
 
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.core.io.Resource;
+import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
+import ru.sevryukov.spring.model.Question;
 import ru.sevryukov.spring.service.FileStringReader;
-import ru.sevryukov.spring.service.impl.QuestionReaderImpl;
+import ru.sevryukov.spring.service.QuestionReader;
 
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@ContextConfiguration(classes = {FileStringReader.class, QuestionReader.class})
 class FileReaderMockTest {
 
-    @Mock
+    @MockBean
     FileStringReader fileStringReader;
 
-    @Mock
-    Resource file;
+    @MockBean
+    QuestionReader questionReader;
 
     @BeforeEach
     public void prepareData() {
-        when(fileStringReader.getStrings(any())).thenReturn(List.of("1", "2", "3"));
+        when(questionReader.readQuestionsFromFile())
+                .thenReturn(List.of(Mockito.mock(Question.class)));
     }
 
     @Test
     void testFileStringReader() {
-        var questionsReader = new QuestionReaderImpl(file, fileStringReader);
-        Assertions.assertNotNull(questionsReader);
-        var lines = questionsReader.readQuestionsFromFile();
-        Assertions.assertEquals(3, lines.size());
+        assertNotNull(questionReader);
+        var lines = questionReader.readQuestionsFromFile();
+        assertEquals(1, lines.size());
     }
 }

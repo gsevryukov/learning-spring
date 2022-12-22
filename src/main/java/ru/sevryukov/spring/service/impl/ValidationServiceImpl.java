@@ -1,5 +1,6 @@
 package ru.sevryukov.spring.service.impl;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Answer;
@@ -15,7 +16,7 @@ public class ValidationServiceImpl implements ValidationService {
 
     private final AnswersService answersService;
 
-    public ValidationServiceImpl(@Value("${test.pass.threshold}") int passThreshold,
+    public ValidationServiceImpl(@Value("${studentTest.passThreshold}") int passThreshold,
                                  AnswersService answersService) {
         this.passThreshold = passThreshold;
         this.answersService = answersService;

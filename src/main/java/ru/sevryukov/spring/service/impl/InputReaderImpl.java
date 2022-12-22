@@ -1,5 +1,6 @@
 package ru.sevryukov.spring.service.impl;
 
+
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.service.InputReader;
 
@@ -13,7 +14,7 @@ public class InputReaderImpl implements InputReader {
     @Override
     public String readInput() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            var br = new BufferedReader(new InputStreamReader(System.in));
             return br.readLine().trim();
         } catch (IOException ex) {
             System.out.println("Input read error: " + ex);
