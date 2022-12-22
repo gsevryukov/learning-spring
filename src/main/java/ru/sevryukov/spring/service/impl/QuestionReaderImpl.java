@@ -1,7 +1,7 @@
 package ru.sevryukov.spring.service.impl;
 
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Question;
@@ -15,24 +15,17 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class QuestionReaderImpl implements QuestionReader {
 
-    private final Resource file;
+    private final Resource questionsFile;
     private final FileStringReader fileReader;
     private final LocalizedMessageService messageService;
-
-    public QuestionReaderImpl(@Value("${questions.fileName}") Resource file,
-                              FileStringReader fileReader,
-                              LocalizedMessageService messageService) {
-        this.file = file;
-        this.fileReader = fileReader;
-        this.messageService = messageService;
-    }
 
     @Override
     public List<Question> readQuestionsFromFile() {
 
-        var lines = fileReader.getStrings(file.getFilename());
+        var lines = fileReader.getStrings(questionsFile.getFilename());
         var questions = new ArrayList<Question>();
 
         for (int i = 0; i < lines.size(); i++) {

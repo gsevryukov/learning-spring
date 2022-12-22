@@ -12,5 +12,5 @@ answers:
 studentTest:
   passThreshold: 4
 
-localisation:
+localization:
     locale: ru_Ru

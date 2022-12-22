@@ -8,7 +8,7 @@ import java.util.Locale;
 
 @Getter
 @RequiredArgsConstructor
-@ConfigurationProperties(prefix = "localisation")
+@ConfigurationProperties(prefix = "localization")
 public class LocaleProperties {
     private final Locale locale;
 }

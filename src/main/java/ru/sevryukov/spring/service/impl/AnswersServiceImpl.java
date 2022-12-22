@@ -1,7 +1,7 @@
 package ru.sevryukov.spring.service.impl;
 
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Answer;
@@ -13,24 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AnswersServiceImpl implements AnswersService {
 
-    private final Resource file;
+    private final Resource answersFile;
     private final FileStringReader fileStringReader;
     private final LocalizedMessageService messageService;
-
-    public AnswersServiceImpl(@Value("${answers.fileName}") Resource file,
-                              FileStringReader fileStringReader,
-                              LocalizedMessageService messageService) {
-        this.file = file;
-        this.fileStringReader = fileStringReader;
-        this.messageService = messageService;
-    }
 
     @Override
     public List<Answer> getCorrectAnswers() {
         var result = new ArrayList<Answer>();
-        var lines = fileStringReader.getStrings(file.getFilename());
+        var lines = fileStringReader.getStrings(answersFile.getFilename());
         for (var l : lines) {
             var values = l.split(",");
             if (values.length < 2) {

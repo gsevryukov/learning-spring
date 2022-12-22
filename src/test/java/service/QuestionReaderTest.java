@@ -1,10 +1,12 @@
 package service;
 
 
+import config.TestConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
 import ru.sevryukov.spring.config.properties.LocaleProperties;
 import ru.sevryukov.spring.service.FileStringReader;
@@ -20,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ContextConfiguration(classes = {
         QuestionReaderImpl.class,
         FileStringReaderImpl.class,
+        TestConfig.class
 })
 class QuestionReaderTest {
 
@@ -29,11 +32,15 @@ class QuestionReaderTest {
     @Autowired
     private FileStringReader fileStringReader;
 
+    @Autowired
+    private Resource questionsFile;
+
     @MockBean
     private LocaleProperties localeProperties;
 
     @MockBean
     private LocalizedMessageService messageService;
+
 
     @Test
     void testQuestionReader() {
