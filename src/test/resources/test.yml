@@ -1,0 +1,8 @@
+questions:
+  fileName: questions.csv
+
+answers:
+  fileName: answers.csv
+
+studentTest:
+  passThreshold: 4
