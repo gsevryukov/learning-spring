@@ -1,7 +1,7 @@
 package ru.sevryukov.spring.service.impl;
 
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.sevryukov.spring.model.Answer;
 import ru.sevryukov.spring.service.AnswersService;
@@ -11,6 +11,7 @@ import ru.sevryukov.spring.service.ValidationService;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class ValidationServiceImpl implements ValidationService {
 
     private final int passThreshold;
@@ -18,14 +19,6 @@ public class ValidationServiceImpl implements ValidationService {
     private final AnswersService answersService;
 
     private final LocalizedMessageService messageService;
-
-    public ValidationServiceImpl(@Value("${studentTest.passThreshold}") int passThreshold,
-                                 AnswersService answersService,
-                                 LocalizedMessageService messageService) {
-        this.passThreshold = passThreshold;
-        this.answersService = answersService;
-        this.messageService = messageService;
-    }
 
     @Override
     public String validateAnswers(Map<Integer, Answer> userAnswers) {

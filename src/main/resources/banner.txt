@@ -5,5 +5,5 @@ ${Ansi.RED}         \   \        |  |     |  |  |  | |  |  |  ||   __|  |  . `  
 ${Ansi.GREEN}     .----)   |       |  |     |  `--'  | |  '--'  ||  |____ |  |\   |     |  |            |  |     |  |____ .----)   |       |  |
 ${Ansi.BLUE}     |_______/        |__|      \______/  |_______/ |_______||__| \__|     |__|            |__|     |_______||_______/        |__|
 
-student-test-app 1.0.1
-Powered by Spring Boot 3.0.0
+student-test-app ${application.formatted-version}
+Powered by Spring Boot ${spring-boot.version}
