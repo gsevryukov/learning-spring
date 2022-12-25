@@ -1,3 +1,7 @@
+spring:
+  main:
+    allow-circular-references: true
+
 questions:
   fileName: questions.csv
 

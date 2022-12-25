@@ -27,7 +27,7 @@ public class AppConfig {
     }
 
     private Resource getResourceByName(String fileName) {
-        var name = localeProperties.getLocale().toString() + "_" + fileName;
+        var name = fileName +  "_" + localeProperties.getLocale().toString();
         return new ClassPathResource(name);
     }
 }
