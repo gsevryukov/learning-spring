@@ -11,7 +11,7 @@ import org.springframework.core.io.Resource;
 @PropertySource("classpath:test.yml")
 public class TestConfig {
     @Bean
-    public Resource questionsFile(@Value("${questions.fileName}") String fileName) {
+    public Resource questionsFile(@Value("${questions.file-name}") String fileName) {
         return new ClassPathResource(fileName);
     }
 }

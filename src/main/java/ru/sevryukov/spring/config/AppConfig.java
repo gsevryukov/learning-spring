@@ -9,28 +9,24 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import ru.sevryukov.spring.config.properties.LocaleProperties;
+import ru.sevryukov.spring.config.properties.StudentTestProperties;
 
 @Configuration
 @RequiredArgsConstructor
 @PropertySource("classpath:application.yml")
-@EnableConfigurationProperties(LocaleProperties.class)
+@EnableConfigurationProperties({LocaleProperties.class, StudentTestProperties.class})
 public class AppConfig {
 
     private final LocaleProperties localeProperties;
 
     @Bean
-    public Resource questionsFile(@Value("${questions.fileName}") String fileName) {
+    public Resource questionsFile(@Value("${questions.file-name}") String fileName) {
         return getResourceByName(fileName);
     }
 
     @Bean
-    public Resource answersFile(@Value("${answers.fileName}") String fileName) {
+    public Resource answersFile(@Value("${answers.file-name}") String fileName) {
         return getResourceByName(fileName);
-    }
-
-    @Bean
-    public int passThreshold(@Value("${studentTest.passThreshold}") int passThreshold) {
-        return passThreshold;
     }
 
     private Resource getResourceByName(String fileName) {

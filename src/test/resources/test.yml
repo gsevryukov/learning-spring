@@ -3,10 +3,10 @@ spring:
     allow-circular-references: true
 
 questions:
-  fileName: questions.csv
+  file-name: questions.csv
 
 answers:
-  fileName: answers.csv
+  file-name: answers.csv
 
-studentTest:
-  passThreshold: 4
+student-test:
+  pass-threshold: 4

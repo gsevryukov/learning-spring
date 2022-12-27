@@ -3,6 +3,7 @@ package ru.sevryukov.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.sevryukov.spring.config.properties.StudentTestProperties;
 import ru.sevryukov.spring.model.Answer;
 import ru.sevryukov.spring.service.AnswersService;
 import ru.sevryukov.spring.service.LocalizedMessageService;
@@ -14,7 +15,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ValidationServiceImpl implements ValidationService {
 
-    private final int passThreshold;
+    private final StudentTestProperties studentTestProperties;
 
     private final AnswersService answersService;
 
@@ -44,7 +45,7 @@ public class ValidationServiceImpl implements ValidationService {
     }
 
     private String getResultString(int correctCounter) {
-        if (correctCounter >= passThreshold) {
+        if (correctCounter >= studentTestProperties.getPassThreshold()) {
             return messageService.getLocalizedMessage("messages.testPassed", null);
         } else {
             return messageService.getLocalizedMessage("messages.testFailed", null);
